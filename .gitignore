@@ -1,0 +1,21 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependency directories
+node_modules
+db-data/*
+!db-data/.keep
+
+# Optional npm cache directory
+.npm
+
+# Windows OS files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*.lnk
+
+.env
+!.keep
