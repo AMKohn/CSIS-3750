@@ -3,11 +3,11 @@
 	"version": "0.0.0",
 	"private": true,
 	"scripts": {
-		"start": "node app.js"
+		"start": "start node app.js && cd frontend && npm start",
+		"postinstall": "cd frontend && npm install"
 	},
 	"dependencies": {
 		"express": "~4.16.1",
-		"hbs": "^4.1.0",
 		"http-errors": "~1.6.3",
 		"mongoose": "^5.9.4",
 		"morgan": "~1.9.1"
