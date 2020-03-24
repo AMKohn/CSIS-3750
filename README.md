@@ -10,6 +10,8 @@ Run `npm install`
 
 Run `startdb.bat` to start MongoDB from the default directory
 
-Either run the project from IntelliJ or run `node app` from the command line
+Run `npm start` from the `frontend` directory to start the frontend
+
+Either run the project from IntelliJ or run `npm start` from the command line to start the API server
 
 Open the main page at [`http://localhost:3000/`](http://localhost:3000/)
