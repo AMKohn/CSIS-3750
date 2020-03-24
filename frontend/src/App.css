@@ -1,0 +1,23 @@
+/*---------------------------------------------
+	/ Toolbar
+*/
+header.toolbar {
+    z-index: 99;
+    height: 60px;
+    text-align: right;
+    position: relative;
+    background: #1699DD;
+    font-family: Roboto, sans-serif;
+}
+
+.toolbar .page-title {
+    float: left;
+    color: #FFF;
+    font-size: 20px;
+    line-height: 60px;
+    padding-left: 25px;
+}
+
+main {
+    padding: 50px;
+}

@@ -14,6 +14,10 @@ import "./App.css";
 export default function App() {
 	return (
 		<Router>
+			<header className="toolbar">
+				<h1 className="page-title">LearningApp</h1>
+			</header>
+
 			<Switch>
 				<Route path="/course">
 					<Course />

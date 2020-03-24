@@ -2,9 +2,9 @@ import React from "react";
 
 export default function Module() {
 	return (
-		<div className={"module"}>
+		<main className={"module"}>
 			<h1>Module</h1>
 			<p>This is the module page</p>
-		</div>
+		</main>
 	);
 }
