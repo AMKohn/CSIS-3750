@@ -19,8 +19,8 @@ export default function App() {
 			</header>
 			<div className="sidenav">
 				<Link to="/dashboard">Home</Link>
-				<Link to="/Course">Courses</Link>
-				<Link to="/Module">Module</Link>
+				<Link to="/course">Courses</Link>
+				<Link to="/module/0">Module</Link>
 			</div>
 
 			<Switch>

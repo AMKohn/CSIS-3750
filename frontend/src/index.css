@@ -72,6 +72,3 @@ a:hover {
 ::-webkit-scrollbar-thumb:active {
 	background: rgba(0, 0, 0, .3);
 }
-h1 {
-  color: blue;
-}
