@@ -15,19 +15,13 @@ export default function App() {
 	return (
 		<Router>
 			<header className="toolbar">
-				<h1 className="page-title">LearningApp</h1>
+				<h1 className="page-title">Learning App</h1>
 			</header>
 
 			<Switch>
-				<Route path="/course">
-					<Course />
-				</Route>
-				<Route path="/module">
-					<Module />
-				</Route>
-				<Route path="/">
-					<Dashboard />
-				</Route>
+				<Route path="/course" component={Course} />
+				<Route path="/module/:moduleId" component={Module} />
+				<Route path="/" component={Dashboard} />
 			</Switch>
 		</Router>
 	);

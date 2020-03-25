@@ -3,6 +3,7 @@ const logger = require("morgan");
 const express = require("express");
 
 const indexRoute = require("./routes/index");
+const modulesRoute = require("./routes/modules");
 
 const app = express();
 
@@ -12,7 +13,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Routes
-app.get("/", indexRoute);
+const api = express.Router();
+
+api.get("/modules/:id", modulesRoute);
+api.get("/", indexRoute);
+
+app.use("/api", api);
 
 // Listen on port 3100
 db.mongoose.connection.once("open", () => {
