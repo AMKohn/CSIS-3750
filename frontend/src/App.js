@@ -2,7 +2,7 @@ import React from "react";
 import {
 	BrowserRouter as Router,
 	Switch,
-	Route
+	Route, Link
 } from "react-router-dom";
 
 import Module from "./Module";
@@ -17,6 +17,11 @@ export default function App() {
 			<header className="toolbar">
 				<h1 className="page-title">Learning App</h1>
 			</header>
+			<div className="sidenav">
+				<Link to="/dashboard">Home</Link>
+				<Link to="/Course">Courses</Link>
+				<Link to="/Module">Module</Link>
+			</div>
 
 			<Switch>
 				<Route path="/course" component={Course} />
