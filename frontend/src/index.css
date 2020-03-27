@@ -127,6 +127,19 @@ button:focus {
 	box-shadow: 0 7px 13px 0 rgba(27, 58, 108, 0.11), 0 3px 8px 0 rgba(27, 58, 108, 0.11);
 }
 
+button.red, .btn.red { background: #F44336; }
+button.red:hover, .btn.red:hover,
+button.red:active, .btn.red:active { background: #E53935; }
+
+button.green, .btn.green { background: #4CAF50; }
+button.green:hover, .btn.green:hover,
+button.green:active, .btn.green:active { background: #43A047; }
+
+button.orange, .btn.orange { background: #FF9800; }
+button.orange:hover, .btn.orange:hover,
+button.orange:active, .btn.orange:active { background: #FB8C00; }
+
+.btn.flat,
 button.flat {
 	color: #333;
 	font-size: 13px;
@@ -134,9 +147,18 @@ button.flat {
 	box-shadow: none;
 	font-weight: 600;
 	padding: 2px 12px;
+	transition: color .15s;
 	text-transform: uppercase;
 }
 
+.btn.flat:hover,
 button.flat:hover {
-	color: #777;
+	color: #777!important;
+	background: none;
+	box-shadow: none;
 }
+
+button.flat.red, .btn.flat.red			{ color: #F44336; }
+button.flat.blue, .btn.flat.blue		{ color: #2196F3; }
+button.flat.green, .btn.flat.green		{ color: #4CAF50; }
+button.flat.orange, .btn.flat.orange	{ color: #FF9800; }
