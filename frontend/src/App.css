@@ -1,3 +1,7 @@
+#root {
+    position: relative;
+}
+
 /*---------------------------------------------
 	/ Toolbar
 */
@@ -24,9 +28,9 @@ main {
 }
 
 .sidenav {
-    height: 100%;
+    bottom: 0;
     width: 140px;
-    position: fixed;
+    position: absolute;
     z-index: 1;
     top: 50px;
     left: 0;

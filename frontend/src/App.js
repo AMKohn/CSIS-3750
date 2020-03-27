@@ -17,6 +17,7 @@ export default function App() {
 			<header className="toolbar">
 				<h1 className="page-title">Learning App</h1>
 			</header>
+
 			<div className="sidenav">
 				<Link to="/dashboard">Home</Link>
 				<Link to="/course">Courses</Link>
