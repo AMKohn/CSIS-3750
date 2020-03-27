@@ -72,3 +72,71 @@ a:hover {
 ::-webkit-scrollbar-thumb:active {
 	background: rgba(0, 0, 0, .3);
 }
+
+
+
+
+
+/*---------------------------------------------
+	/ Buttons
+*/
+.btn,
+button {
+	color: #FFF;
+	font-size: 13px;
+	line-height: 1;
+	font-weight: 500;
+	padding: 12px 20px;
+	border-radius: 3px;
+	background: #2196F3;
+	vertical-align: top;
+	letter-spacing: .3px;
+	display: inline-block;
+	text-transform: uppercase;
+	font-family: Roboto, sans-serif;
+	transition: background-color,box-shadow .15s ease-in-out;
+}
+
+.btn.disabled,
+button.disabled,
+button[disabled],
+
+.btn.disabled:hover,
+button.disabled:hover,
+button[disabled]:hover,
+
+.btn.disabled:focus,
+button.disabled:focus,
+button[disabled]:focus,
+
+.btn.disabled:active,
+button.disabled:active,
+button[disabled]:active {
+	color: #FAFAFA;
+	background: #999;
+	box-shadow: none;
+}
+
+.btn:hover,
+.btn:focus,
+button:hover,
+button:focus {
+	color: #FFF;
+	background: #1E88E5;
+	text-decoration: none;
+	box-shadow: 0 7px 13px 0 rgba(27, 58, 108, 0.11), 0 3px 8px 0 rgba(27, 58, 108, 0.11);
+}
+
+button.flat {
+	color: #333;
+	font-size: 13px;
+	background: none;
+	box-shadow: none;
+	font-weight: 600;
+	padding: 2px 12px;
+	text-transform: uppercase;
+}
+
+button.flat:hover {
+	color: #777;
+}
