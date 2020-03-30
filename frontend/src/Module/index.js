@@ -4,6 +4,7 @@ import {
 } from "react-router-dom";
 
 import "./style.css";
+import LoadingSpinner from "../LoadingSpinner";
 
 export default class Module extends React.Component {
 	constructor(props) {
@@ -50,7 +51,7 @@ export default class Module extends React.Component {
 						{this.state.error ? (
 							<h1 style={{marginBottom: 0}}>Error: {this.state.error.message}</h1>
 						) : (
-							<h1 style={{marginBottom: 0}}>Loading...</h1>
+							<LoadingSpinner />
 						)}
 					</div>
 				</main>

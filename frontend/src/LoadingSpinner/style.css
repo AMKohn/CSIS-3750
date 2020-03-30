@@ -1,0 +1,30 @@
+.loading-spinner {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.loading-spinner:after {
+	width: 64px;
+	margin: 8px;
+	height: 64px;
+	content: " ";
+	display: block;
+	border: 6px solid;
+	border-radius: 50%;
+	border-color: #2196F3 transparent #2196F3 transparent;
+	animation: loading-spinner 1.2s linear infinite, spinner-colors 5s linear infinite;
+}
+
+@keyframes loading-spinner {
+	0%		{ transform: rotate(0deg); }
+	100%	{ transform: rotate(360deg); }
+}
+
+@keyframes spinner-colors {
+	0%		{ border-color: #2196F3 transparent #2196F3 transparent; }
+	25%		{ border-color: #4CAF50 transparent #4CAF50 transparent; }
+	50%		{ border-color: #FF9800 transparent #FF9800 transparent; }
+	75%		{ border-color: #F44336 transparent #F44336 transparent; }
+	100%	{ border-color: #2196F3 transparent #2196F3 transparent; }
+}
