@@ -1,7 +1,3 @@
-#root {
-    position: relative;
-}
-
 /*---------------------------------------------
 	/ Toolbar
 */
@@ -24,30 +20,36 @@ header.toolbar {
 
 main {
     padding: 50px;
-    margin-left: 140px;
+    margin-left: 200px;
 }
 
 .sidenav {
-    bottom: 0;
-    width: 140px;
-    position: absolute;
-    z-index: 1;
-    top: 50px;
     left: 0;
+    bottom: 0;
+    top: 60px;
+    z-index: 1;
+    width: 200px;
+    padding: 10px 0;
+    position: absolute;
     background-color: #111;
-    overflow-x: hidden;
-    padding-top: 20px;
-    font-family: Roboto, sans-serif;
 }
 
 .sidenav a {
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #1699DD;
     display: block;
+    font-size: 14px;
+    padding: 14px 24px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, .7);
+    border-left: 3px solid transparent;
 }
 
-.sidenav a:hover {
-    color: #f1f1f1;
+.sidenav a:hover,
+.sidenav a:active,
+.sidenav a.active {
+    color: #FFF;
+}
+
+.sidenav a:active,
+.sidenav a.active {
+    border-color: #1699DD;
 }

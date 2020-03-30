@@ -31,10 +31,10 @@ class LessonListing extends React.Component {
 				<h3 className={"name"} onClick={() => this.setState({ collapsed: !this.state.collapsed })}>Lesson {this.props.id}</h3>
 
 				<ul className={"module-list"}>
-					<li className={this.props.id === 2 && "completed"}><Link to={"/module/1"}>Module 1</Link></li>
-					<li className={this.props.id === 2 && "completed"}><Link to={"/module/2"}>Module 2</Link></li>
-					<li className={this.props.id === 2 && "completed"}><Link to={"/module/3"}>Module 3</Link></li>
-					<li className={this.props.id === 2 && "completed"}><Link to={"/module/4"}>Module 4</Link></li>
+					<li className={this.props.id === 2 ? "completed" : ""}><Link to={"/module/1"}>Module 1</Link></li>
+					<li className={this.props.id === 2 ? "completed" : ""}><Link to={"/module/2"}>Module 2</Link></li>
+					<li className={this.props.id === 2 ? "completed" : ""}><Link to={"/module/3"}>Module 3</Link></li>
+					<li className={this.props.id === 2 ? "completed" : ""}><Link to={"/module/4"}>Module 4</Link></li>
 					<li><Link to={"/module/5"}>Module 5</Link></li>
 					<li><Link to={"/module/6"}>Module 6</Link></li>
 					<li><Link to={"/module/7"}>Module 7</Link></li>

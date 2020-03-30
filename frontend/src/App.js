@@ -2,7 +2,8 @@ import React from "react";
 import {
 	BrowserRouter as Router,
 	Switch,
-	Route, Link
+	Route,
+	NavLink
 } from "react-router-dom";
 
 import Module from "./Module";
@@ -19,9 +20,9 @@ export default function App() {
 			</header>
 
 			<div className="sidenav">
-				<Link to="/dashboard">Home</Link>
-				<Link to="/course">Courses</Link>
-				<Link to="/module/0">Module</Link>
+				<NavLink to="/" exact>Home</NavLink>
+				<NavLink to="/course">Courses</NavLink>
+				<NavLink to="/module/0" isActive={(match, location) => location.pathname.slice(0, 7) === "/module"}>Module</NavLink>
 			</div>
 
 			<Switch>
