@@ -51,8 +51,6 @@ export default class Dashboard extends React.Component {
 			)
 		}
 
-		let cId = this.state.courseId;
-
 		return (
 			<main className={"dashboard"}>
 				<section className="course in-progress">
@@ -78,8 +76,8 @@ export default class Dashboard extends React.Component {
 					</div>
 				
 					<div className="buttons">
-						<a className="btn flat" href="/courses/0">Go to course</a>
-						<a className="btn flat blue" href="/courses/0/modules/205">Continue</a>
+						<Link className="btn flat" to="/courses/0">Go to course</Link>
+						<Link className="btn flat blue" to="/courses/0/modules/205">Continue</Link>
 					</div>
 				</section>
 				
@@ -106,8 +104,8 @@ export default class Dashboard extends React.Component {
 					</div>
 				
 					<div className="buttons">
-						<a className="btn flat" href="/courses/0">Go to course</a>
-						<a className="btn flat blue" href="/courses/0/modules/205">Continue</a>
+						<Link className="btn flat" to="/courses/0">Go to course</Link>
+						<Link className="btn flat blue" to="/courses/0/modules/205">Continue</Link>
 					</div>
 				</section>
 				
@@ -134,8 +132,8 @@ export default class Dashboard extends React.Component {
 					</div>
 				
 					<div className="buttons">
-						<a className="btn flat" href="/courses/0">Go to course</a>
-						<a className="btn flat blue" href="/courses/0/modules/205">Start</a>
+						<Link className="btn flat" to="/courses/0">Go to course</Link>
+						<Link className="btn flat blue" to="/courses/0/modules/205">Start</Link>
 					</div>
 				</section>
 				
@@ -162,8 +160,8 @@ export default class Dashboard extends React.Component {
 					</div>
 				
 					<div className="buttons">
-						<a className="btn flat" href="/courses/0">Go to course</a>
-						<a className="btn flat blue" href="/courses/0/modules/205">Start</a>
+						<Link className="btn flat" to="/courses/0">Go to course</Link>
+						<Link className="btn flat blue" to="/courses/0/modules/205">Start</Link>
 					</div>
 				</section>
 				
@@ -190,7 +188,7 @@ export default class Dashboard extends React.Component {
 					</div>
 				
 					<div className="buttons">
-						<a className="btn flat" href="/courses/0">Go to course</a>
+						<Link className="btn flat" to="/courses/0">Go to course</Link>
 					</div>
 				</section>
 				
@@ -217,7 +215,7 @@ export default class Dashboard extends React.Component {
 					</div>
 				
 					<div className="buttons">
-						<a className="btn flat" href="/courses/0">Go to course</a>
+						<Link className="btn flat" to="/courses/0">Go to course</Link>
 					</div>
 				</section>
 			</main>
