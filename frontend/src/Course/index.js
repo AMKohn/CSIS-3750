@@ -112,7 +112,7 @@ export default class Course extends React.Component {
 		let c = this.state;
 
 		return (
-			<main className={"course"}>
+			<main className={"course-overview"}>
 				<h1 className={"title"}>{c.name}</h1>
 
 				{ c.hasOwnProperty("nextModule") &&

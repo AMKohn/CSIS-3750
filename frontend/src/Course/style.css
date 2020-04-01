@@ -1,8 +1,8 @@
-main.course {
+main.course-overview {
 	padding: 0 50px 35px;
 }
 
-.course h1.title {
+.course-overview h1.title {
 	padding: 0 35px;
 	background: #FFF;
 	font-weight: 300;
@@ -11,12 +11,12 @@ main.course {
 	box-shadow: 0 0 3px rgba(0, 0, 0, .3);
 }
 
-.course .contents {
+.course-overview .contents {
 	width: 750px;
 	display: inline-block;
 }
 
-.course .continue {
+.course-overview .continue {
 	width: 900px;
 	padding: 25px;
 	display: flex;
@@ -27,29 +27,29 @@ main.course {
 	border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
-.course .continue h2 {
+.course-overview .continue h2 {
 	flex: 1;
 	margin: 0;
 }
 
-.course .sidebar {
+.course-overview .sidebar {
 	width: 300px;
 	margin-left: 25px;
 	vertical-align: top;
 	display: inline-block;
 }
 
-.course .sidebar h4 {
+.course-overview .sidebar h4 {
 	font-weight: 500;
 	margin-bottom: 0;
 	text-transform: uppercase;
 }
 
-.course .sidebar li {
+.course-overview .sidebar li {
 	margin-bottom: 15px;
 }
 
-.course .lesson {
+.course-overview .lesson {
 	overflow: hidden;
 	background: #FFF;
 	max-height: 400px;
@@ -59,16 +59,16 @@ main.course {
 	border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.course .lesson.completed,
-.course .module-list li.completed {
+.course-overview .lesson.completed,
+.course-overview .module-list li.completed {
 	color: #999;
 }
 
-.course .lesson.collapsed {
+.course-overview .lesson.collapsed {
 	max-height: 60px;
 }
 
-.course .lesson .name {
+.course-overview .lesson .name {
 	margin: 0;
 	display: block;
 	cursor: pointer;
@@ -79,22 +79,22 @@ main.course {
 	border-bottom: 1px solid rgba(0, 0, 0, .05);
 }
 
-.course .module-list {
+.course-overview .module-list {
 	column-count: 2;
 	padding: 10px 25px;
 	line-height: 30px;
 }
 
-.course .module-list a {
+.course-overview .module-list a {
 	color: inherit;
 }
 
-.course .module-list a:hover {
+.course-overview .module-list a:hover {
 	text-decoration: underline;
 }
 
 /* TODO: Update with better SVGs */
-.course .module-list li:before {
+.course-overview .module-list li:before {
 	width: 11px;
 	border-radius: 50%;
 	padding-right: 5px;
@@ -102,12 +102,12 @@ main.course {
 	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23999" viewBox="0 0 12 16" width="12" height="16"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5L12 5z"></path></svg>');
 }
 
-.course .lesson.completed .module-list li:before,
-.course .module-list li.completed:before {
+.course-overview .lesson.completed .module-list li:before,
+.course-overview .module-list li.completed:before {
 	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%232CBE4E" viewBox="0 0 12 16" width="12" height="16"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5L12 5z"></path></svg>');
 }
 
-.course .lesson.completed .name:after {
+.course-overview .lesson.completed .name:after {
 	float: right;
 	width: 26px;
 	height: 26px;
