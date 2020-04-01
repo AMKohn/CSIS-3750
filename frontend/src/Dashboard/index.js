@@ -11,7 +11,7 @@ export default class Dashboard extends React.Component {
 		super(props);
 
 		this.state = {
-			loaded: false,
+			loaded: true,
 			error: false
 		};
 	}
@@ -22,7 +22,7 @@ export default class Dashboard extends React.Component {
 			error: false
 		});
 
-		fetch("/api/courses/" + this.props.match.params.courseId + "/modules/" + this.props.match.params.moduleId)
+		fetch("/api/dashboard")
 			.then(res => res.json())
 			.then(
 				result => this.setState({ loaded: true, ...result }),
@@ -31,22 +31,14 @@ export default class Dashboard extends React.Component {
 	}
 
 	componentDidMount() {
-		this.updateFromApi();
+		//this.updateFromApi();
 	}
 	
 	render() {
 		if (this.state.error || !this.state.loaded) {
 			return (
-				<main className={"module"}>
-					<Link to={"/courses/" + this.props.match.params.courseId}>Back to course</Link>
-
-					<div className={"content"}>
-						{this.state.error ? (
-							<h1 style={{marginBottom: 0}}>Error: {this.state.error.message}</h1>
-						) : (
-							<LoadingSpinner />
-						)}
-					</div>
+				<main className={"dashboard"}>
+					<LoadingSpinner />
 				</main>
 			)
 		}

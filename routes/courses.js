@@ -1,5 +1,18 @@
+const Course = require("../lib/db/Course");
+
 module.exports = (req, res) => {
 	let courseId = parseInt(req.params.id);
+
+	Course.findOne({
+		id: courseId
+	}, (err, course) => {
+		if (err || !course) {
+			console.log("Failed to find course");
+		}
+		else {
+			console.log("Found course " + course.name);
+		}
+	});
 
 	res.json({
 		name: "My Super Awesome Course " + courseId,
