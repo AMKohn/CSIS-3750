@@ -1,20 +1,23 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import "./style.css";
+import LoadingSpinner from "../LoadingSpinner";
 
 class LessonListing extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {
-			collapsed: this.props.completed
-		};
+		this.state = this.props.lesson;
+
+		if (this.state.status === "completed") {
+			this.state.collapsed = true;
+		}
 	}
 
 	getClassName() {
 		let className = "lesson";
 
-		if (this.props.completed) {
+		if (this.state.status === "completed") {
 			className += " completed";
 		}
 
@@ -28,19 +31,14 @@ class LessonListing extends React.Component {
 	render() {
 		return (
 			<div className={this.getClassName()}>
-				<h3 className={"name"} onClick={() => this.setState({ collapsed: !this.state.collapsed })}>Lesson {this.props.id}</h3>
+				<h3 className={"name"} onClick={() => this.setState({ collapsed: !this.state.collapsed })}>{this.state.name}</h3>
 
 				<ul className={"module-list"}>
-					<li className={this.props.id === 2 ? "completed" : ""}><Link to={"/module/1"}>Module 1</Link></li>
-					<li className={this.props.id === 2 ? "completed" : ""}><Link to={"/module/2"}>Module 2</Link></li>
-					<li className={this.props.id === 2 ? "completed" : ""}><Link to={"/module/3"}>Module 3</Link></li>
-					<li className={this.props.id === 2 ? "completed" : ""}><Link to={"/module/4"}>Module 4</Link></li>
-					<li><Link to={"/module/5"}>Module 5</Link></li>
-					<li><Link to={"/module/6"}>Module 6</Link></li>
-					<li><Link to={"/module/7"}>Module 7</Link></li>
-					<li><Link to={"/module/8"}>Module 8</Link></li>
-					<li><Link to={"/module/9"}>Module 9</Link></li>
-					<li><Link to={"/module/10"}>Module 10</Link></li>
+					{this.state.modules.map(m =>
+						<li className={m.completed ? "completed" : ""} key={m.id}>
+							<Link to={m.link}>{m.name}</Link>
+						</li>
+					)}
 				</ul>
 			</div>
 		)
@@ -57,30 +55,84 @@ export default class Course extends React.Component {
 		};
 	}
 
+	updateFromApi() {
+		this.setState({
+			loaded: false,
+			error: false
+		});
+
+		fetch("/api/courses/" + this.props.match.params.courseId)
+			.then(res => res.json())
+			.then(
+				result => this.setState({ loaded: true, ...result }),
+				error => this.setState({ loaded: true, error })
+			)
+	}
+
+	componentDidMount() {
+		this.updateFromApi();
+	}
+
+	componentDidUpdate(prevProps) {
+		// If the course changed, update from the API
+		if (prevProps.match.params.courseId !== this.props.match.params.courseId) {
+			this.updateFromApi();
+		}
+	}
+
+	getStatus() {
+		switch (this.state.status) {
+			case "inprogress":
+				return "In progress";
+			case "completed":
+				return "Completed";
+			default:
+				return "Not started";
+		}
+	}
+
 	render() {
+		if (this.state.error) {
+			return (
+				<main className={"course"}>
+					<h1 className={"title"}>Error: {this.state.error.message}</h1>
+				</main>
+			);
+		}
+		else if (!this.state.loaded) {
+			return (
+				<main className={"course"}>
+					<h1 className={"title"}>Loading course...</h1>
+
+					<LoadingSpinner />
+				</main>
+			)
+		}
+
+		let c = this.state;
+
 		return (
 			<main className={"course"}>
-				<h1 className={"title"}>My Super Awesome Course Name</h1>
+				<h1 className={"title"}>{c.name}</h1>
 
-				<div className={"continue"}>
-					<h2>Continue with Lesson 3, Module 2</h2>
+				{ c.hasOwnProperty("nextModule") &&
+					<div className={"continue"}>
+						<h2>Continue with {c.nextModule.lessonName}, {c.nextModule.name}</h2>
 
-					<Link to={"/module/2"} className={"btn"}>Continue</Link>
-				</div>
+						<Link to={c.nextModule.link} className={"btn"}>Continue</Link>
+					</div>
+				}
 
 				<div className={"contents"}>
-					<LessonListing id={1} completed={true} />
-					<LessonListing id={2} completed={false} />
-					<LessonListing id={3} completed={false} />
-					<LessonListing id={4} completed={false} />
+					{c.lessons.map(l => <LessonListing lesson={l} key={l.id} courseId={this.state.id} />)}
 				</div>
 
 				<div className={"sidebar"}>
 					<ul>
-						<li><h4>Status</h4> In progress</li>
-						<li><h4>Progress</h4> 87% complete</li>
-						<li><h4>Lessons completed</h4> 9 of 12</li>
-						<li><h4>Time remaining</h4> 2 / 10 hours</li>
+						<li><h4>Status</h4> {this.getStatus()}</li>
+						<li><h4>Progress</h4> {c.progressPercentage || 0}% complete</li>
+						<li><h4>Lessons completed</h4> {c.lessons.filter(l => l.status === "completed").length} of {c.lessons.length}</li>
+						<li><h4>Time remaining</h4> {c.timeRemaining} / {c.totalTime} hours</li>
 					</ul>
 				</div>
 			</main>

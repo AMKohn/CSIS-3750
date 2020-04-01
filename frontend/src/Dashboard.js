@@ -6,7 +6,7 @@ export default function Dashboard() {
 		<main className={"dashboard"}>
 			<center>
 				<h1>Dashboard</h1>
-				<Link to="/course">Go to the course page</Link>
+				<Link to="/courses/0">Go to the course page</Link>
 			</center>
 		</main>
 	);

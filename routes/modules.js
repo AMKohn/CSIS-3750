@@ -44,9 +44,10 @@ module.exports = (req, res) => {
 	let mId = parseInt(req.params.id);
 
 	res.json({
-		title: "Module Number " + mId,
-		prevModuleId: mId - 1,
-		nextModuleId: mId + 1,
+		title: "Module " + mId,
+		courseId: req.params.courseId,
+		prevModule: `/courses/${req.params.courseId}/modules/${mId - 1}`,
+		nextModule: `/courses/${req.params.courseId}/modules/${mId + 1}`,
 		content: generateContent()
 	});
 };

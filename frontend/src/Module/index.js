@@ -22,7 +22,7 @@ export default class Module extends React.Component {
 			error: false
 		});
 
-		fetch("/api/modules/" + this.props.match.params.moduleId)
+		fetch("/api/courses/" + this.props.match.params.courseId + "/modules/" + this.props.match.params.moduleId)
 			.then(res => res.json())
 			.then(
 				result => this.setState({ loaded: true, ...result }),
@@ -36,16 +36,17 @@ export default class Module extends React.Component {
 
 	componentDidUpdate(prevProps) {
 		// If the module changed, update from the API
-		if (prevProps.match.params.moduleId !== this.props.match.params.moduleId) {
+		if (prevProps.match.params.moduleId !== this.props.match.params.moduleId || prevProps.match.params.courseId !== this.props.match.params.courseId) {
 			this.updateFromApi();
 		}
 	}
+
 
 	render() {
 		if (this.state.error || !this.state.loaded) {
 			return (
 				<main className={"module"}>
-					<Link to="/course">Back to course</Link>
+					<Link to={"/courses/" + this.props.match.params.courseId}>Back to course</Link>
 
 					<div className={"content"}>
 						{this.state.error ? (
@@ -58,9 +59,11 @@ export default class Module extends React.Component {
 			)
 		}
 
+		let cId = this.state.courseId;
+
 		return (
 			<main className={"module"}>
-				<Link to="/course">Back to course</Link>
+				<Link to={"/courses/" + cId}>Back to course</Link>
 
 				<div className={"content"}>
 					<h1>{this.state.title}</h1>
@@ -68,8 +71,8 @@ export default class Module extends React.Component {
 					<div className={"module-content"} dangerouslySetInnerHTML={{ __html: this.state.content }} />
 
 					<div className={"nav-buttons"}>
-						{this.state.prevModuleId != null && (<Link to={"/module/" + this.state.prevModuleId} className={"prev"}>Previous Module</Link>) }
-						{this.state.nextModuleId != null && (<Link to={"/module/" + this.state.nextModuleId} className={"next"}>Next Module</Link>) }
+						{this.state.prevModule != null && (<Link to={this.state.prevModule} className={"prev"}>Previous Module</Link>) }
+						{this.state.nextModule != null && (<Link to={this.state.nextModule} className={"next"}>Next Module</Link>) }
 					</div>
 				</div>
 			</main>

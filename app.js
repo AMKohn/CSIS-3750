@@ -3,6 +3,7 @@ const logger = require("morgan");
 const express = require("express");
 
 const indexRoute = require("./routes/index");
+const coursesRoute = require("./routes/courses");
 const modulesRoute = require("./routes/modules");
 
 const app = express();
@@ -15,7 +16,8 @@ app.use(express.urlencoded({ extended: false }));
 // Routes
 const api = express.Router();
 
-api.get("/modules/:id", modulesRoute);
+api.get("/courses/:courseId/modules/:id", modulesRoute);
+api.get("/courses/:id", coursesRoute);
 api.get("/", indexRoute);
 
 app.use("/api", api);

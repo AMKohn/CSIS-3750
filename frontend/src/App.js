@@ -21,13 +21,13 @@ export default function App() {
 
 			<div className="sidenav">
 				<NavLink to="/" exact>Home</NavLink>
-				<NavLink to="/course">Courses</NavLink>
-				<NavLink to="/module/0" isActive={(match, location) => location.pathname.slice(0, 7) === "/module"}>Module</NavLink>
+				<NavLink to="/courses/0" exact>Courses</NavLink>
+				<NavLink to="/courses/0/modules/205" isActive={(match, location) => location.pathname.split("/")[3] === "modules"}>Module</NavLink>
 			</div>
 
 			<Switch>
-				<Route path="/course" component={Course} />
-				<Route path="/module/:moduleId" component={Module} />
+				<Route path="/courses/:courseId/modules/:moduleId" component={Module} />
+				<Route path="/courses/:courseId" component={Course} />
 				<Route path="/" component={Dashboard} />
 			</Switch>
 		</Router>
