@@ -2,6 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import "./style.css";
 import LoadingSpinner from "../LoadingSpinner";
+import {AuthContext} from "../AuthProvider";
 
 class LessonListing extends React.Component {
 	constructor(props) {
@@ -46,6 +47,8 @@ class LessonListing extends React.Component {
 }
 
 export default class Course extends React.Component {
+	static contextType = AuthContext;
+
 	constructor(props) {
 		super(props);
 
@@ -61,7 +64,7 @@ export default class Course extends React.Component {
 			error: false
 		});
 
-		fetch("/api/courses/" + this.props.match.params.courseId)
+		this.context.fetch("/api/courses/" + this.props.match.params.courseId)
 			.then(res => res.json())
 			.then(
 				result => this.setState({ loaded: true, ...result }),

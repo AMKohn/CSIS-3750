@@ -5,8 +5,11 @@ import {
 
 import "./style.css";
 import LoadingSpinner from "../LoadingSpinner";
+import {AuthContext} from "../AuthProvider";
 
 export default class Module extends React.Component {
+	static contextType = AuthContext;
+
 	constructor(props) {
 		super(props);
 
@@ -22,7 +25,7 @@ export default class Module extends React.Component {
 			error: false
 		});
 
-		fetch("/api/courses/" + this.props.match.params.courseId + "/modules/" + this.props.match.params.moduleId)
+		this.context.fetch("/api/courses/" + this.props.match.params.courseId + "/modules/" + this.props.match.params.moduleId)
 			.then(res => res.json())
 			.then(
 				result => this.setState({ loaded: true, ...result }),

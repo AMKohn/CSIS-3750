@@ -1,6 +1,10 @@
 const Course = require("../lib/db/Course");
 
 module.exports = (req, res) => {
+	if (req.isAuthed) {
+		console.log("Got courses request for user", req.username);
+	}
+
 	let courseId = parseInt(req.params.id);
 
 	Course.findOne({

@@ -5,8 +5,11 @@ import {
 
 import "./style.css";
 import LoadingSpinner from "../LoadingSpinner";
+import {AuthContext} from "../AuthProvider";
 
 export default class Dashboard extends React.Component {
+	static contextType = AuthContext;
+
 	constructor(props) {
 		super(props);
 
@@ -22,7 +25,7 @@ export default class Dashboard extends React.Component {
 			error: false
 		});
 
-		fetch("/api/dashboard")
+		this.context.fetch("/api/dashboard")
 			.then(res => res.json())
 			.then(
 				result => this.setState({ loaded: true, ...result }),
