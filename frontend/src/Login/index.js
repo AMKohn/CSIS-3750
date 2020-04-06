@@ -49,7 +49,7 @@ export default class Login extends React.Component {
 						{ users.map(e => <button className={"blue"} key={e[0]} onClick={() => this.login(e[0])}>{e[1]}</button>) }
 					</div>
 
-					<p>In a production app an enterprise authentication system like the WSO2 Identity Server used by NSU would handle authentication, so we don't need a username and password system.</p>
+					<p>In the production app an enterprise authentication system like the WSO2 Identity Server used by NSU would handle authentication, so we don't need a username and password system.</p>
 				</div>
 			</div>
 		)
