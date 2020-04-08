@@ -7,6 +7,54 @@ import "./style.css";
 import LoadingSpinner from "../LoadingSpinner";
 import {AuthContext} from "../AuthProvider";
 
+class CourseListing extends React.Component {
+	STATUS_MAP = {
+		new: "Not Started",
+		inprogress: "In Progress",
+		completed: "Completed"
+	};
+
+	constructor(props) {
+		super(props);
+
+		this.state = this.props.course;
+	}
+
+	render() {
+		let c = this.state;
+
+		return (
+			<section className={"course " + c.status}>
+				<h2>{c.name}</h2>
+				<p className="subtitle">{this.STATUS_MAP[c.status]}</p>
+				<p className="instructor">{c.instructor}</p>
+
+				<div className="stats">
+					<div>
+						<b>{c.timeRemaining} / {c.totalTime}</b>
+						<p>hours left</p>
+					</div>
+
+					<div>
+						<b>{c.progressPercentage || 0}%</b>
+						<p>complete</p>
+					</div>
+
+					<div>
+						<b>{c.moduleCount}</b>
+						<p>modules</p>
+					</div>
+				</div>
+
+				<div className="buttons">
+					<Link className="btn flat" to={"/courses/" + c.id}>Go to course</Link>
+					{ c.status !== "completed" ? <Link className="btn flat blue" to={c.continueLink}>{c.status === "new" ? "Start" : "Continue"}</Link> : null }
+				</div>
+			</section>
+		)
+	}
+}
+
 export default class Dashboard extends React.Component {
 	static contextType = AuthContext;
 
@@ -14,7 +62,7 @@ export default class Dashboard extends React.Component {
 		super(props);
 
 		this.state = {
-			loaded: true,
+			loaded: false,
 			error: false
 		};
 	}
@@ -34,13 +82,20 @@ export default class Dashboard extends React.Component {
 	}
 
 	componentDidMount() {
-		//this.updateFromApi();
+		this.updateFromApi();
 	}
 	
 	render() {
-		if (this.state.error || !this.state.loaded) {
+		if (this.state.error) {
 			return (
 				<main className={"dashboard"}>
+					<h1 className={"title"}>Error: {this.state.error.message}</h1>
+				</main>
+			);
+		}
+		else if (!this.state.loaded) {
+			return (
+				<main className={"dashboard loading"}>
 					<LoadingSpinner />
 				</main>
 			)
@@ -48,171 +103,9 @@ export default class Dashboard extends React.Component {
 
 		return (
 			<main className={"dashboard"}>
-				<section className="course in-progress">
-					<h2>Intro to Python</h2>
-					<p className="subtitle">In progress</p>
-					<p className="instructor">John Doe, PhD</p>
-				
-					<div className="stats">
-						<div>
-							<b>2 / 10</b>
-							<p>hours left</p>
-						</div>
-				
-						<div>
-							<b>87%</b>
-							<p>complete</p>
-						</div>
-				
-						<div>
-							<b>37</b>
-							<p>modules</p>
-						</div>
-					</div>
-				
-					<div className="buttons">
-						<Link className="btn flat" to="/courses/0">Go to course</Link>
-						<Link className="btn flat blue" to="/courses/0/modules/205">Continue</Link>
-					</div>
-				</section>
-				
-				<section className="course in-progress">
-					<h2>Fundamentals of Computing II</h2>
-					<p className="subtitle">In progress</p>
-					<p className="instructor">John Doe, PhD</p>
-				
-					<div className="stats">
-						<div>
-							<b>2 / 10</b>
-							<p>hours left</p>
-						</div>
-				
-						<div>
-							<b>87%</b>
-							<p>complete</p>
-						</div>
-				
-						<div>
-							<b>37</b>
-							<p>modules</p>
-						</div>
-					</div>
-				
-					<div className="buttons">
-						<Link className="btn flat" to="/courses/0">Go to course</Link>
-						<Link className="btn flat blue" to="/courses/0/modules/205">Continue</Link>
-					</div>
-				</section>
-				
-				<section className="course new">
-					<h2>Advanced Python</h2>
-					<p className="subtitle">Not started</p>
-					<p className="instructor">John Doe, PhD</p>
-				
-					<div className="stats">
-						<div>
-							<b>10 / 10</b>
-							<p>hours left</p>
-						</div>
-				
-						<div>
-							<b>0%</b>
-							<p>complete</p>
-						</div>
-				
-						<div>
-							<b>37</b>
-							<p>modules</p>
-						</div>
-					</div>
-				
-					<div className="buttons">
-						<Link className="btn flat" to="/courses/0">Go to course</Link>
-						<Link className="btn flat blue" to="/courses/0/modules/205">Start</Link>
-					</div>
-				</section>
-				
-				<section className="course new">
-					<h2>React and Modern Web Frameworks</h2>
-					<p className="subtitle">Not started</p>
-					<p className="instructor">John Doe, PhD</p>
-				
-					<div className="stats">
-						<div>
-							<b>10 / 10</b>
-							<p>hours left</p>
-						</div>
-				
-						<div>
-							<b>0%</b>
-							<p>complete</p>
-						</div>
-				
-						<div>
-							<b>37</b>
-							<p>modules</p>
-						</div>
-					</div>
-				
-					<div className="buttons">
-						<Link className="btn flat" to="/courses/0">Go to course</Link>
-						<Link className="btn flat blue" to="/courses/0/modules/205">Start</Link>
-					</div>
-				</section>
-				
-				<section className="course completed">
-					<h2>Web Development</h2>
-					<p className="subtitle">Completed</p>
-					<p className="instructor">John Doe, PhD</p>
-				
-					<div className="stats">
-						<div>
-							<b>0 / 10</b>
-							<p>hours left</p>
-						</div>
-				
-						<div>
-							<b>100%</b>
-							<p>complete</p>
-						</div>
-				
-						<div>
-							<b>37</b>
-							<p>modules</p>
-						</div>
-					</div>
-				
-					<div className="buttons">
-						<Link className="btn flat" to="/courses/0">Go to course</Link>
-					</div>
-				</section>
-				
-				<section className="course completed">
-					<h2>Fundamentals of Computing</h2>
-					<p className="subtitle">Completed</p>
-					<p className="instructor">John Doe, PhD</p>
-				
-					<div className="stats">
-						<div>
-							<b>0 / 10</b>
-							<p>hours left</p>
-						</div>
-				
-						<div>
-							<b>100%</b>
-							<p>complete</p>
-						</div>
-				
-						<div>
-							<b>37</b>
-							<p>modules</p>
-						</div>
-					</div>
-				
-					<div className="buttons">
-						<Link className="btn flat" to="/courses/0">Go to course</Link>
-					</div>
-				</section>
+				<h1 className={"title"}>My Courses</h1>
+
+				{this.state.courses.map(c => <CourseListing course={c} key={c.id} />)}
 			</main>
 		)
 	}

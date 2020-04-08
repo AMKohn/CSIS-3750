@@ -6,6 +6,19 @@ main.dashboard {
     align-items: flex-start;
 }
 
+.dashboard.loading {
+    display: block;
+    padding-top: 80px;
+    max-width: initial;
+}
+
+.dashboard h1.title {
+    flex: 1 0 100%;
+    font-size: 30px;
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
 .dashboard .course {
     margin: 20px;
     padding: 20px;
@@ -22,7 +35,7 @@ main.dashboard {
     border-top-color: #4CAF50;
 }
 
-.dashboard .course.in-progress {
+.dashboard .course.inprogress {
     border-top-color: #FF9800;
 }
 

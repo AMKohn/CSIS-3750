@@ -5,6 +5,7 @@ const Auth = require("./lib/auth");
 
 const authRoutes = require("./routes/auth");
 const indexRoute = require("./routes/index");
+const dashRoute = require("./routes/dashboard");
 const coursesRoute = require("./routes/courses");
 const modulesRoute = require("./routes/modules");
 
@@ -22,6 +23,8 @@ api.get("/getToken/:username", authRoutes.getToken);
 
 // APIs that require authentication should be defined after here
 api.use(Auth.extendRequest);
+
+api.get("/dashboard", dashRoute);
 
 api.get("/courses/:courseId/modules/:id", modulesRoute);
 api.get("/courses/:id", coursesRoute);
