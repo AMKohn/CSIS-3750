@@ -41,6 +41,12 @@ function generateContent(){
 }
 
 module.exports = (req, res) => {
+	// Mark a module as completed once it's loaded by the user. The response can be returned without waiting for this, so you can have the following flow:
+	// Load module (makes sure it's a valid ID)
+	// Simultaneously:
+		// Update user using $addToSet (automatically de-duplicates)
+		// Respond to request
+
 	let mId = parseInt(req.params.id);
 
 	res.json({

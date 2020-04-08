@@ -5,6 +5,12 @@ module.exports = (req, res) => {
 		console.log("Got courses request for user", req.username);
 	}
 
+	// Simultaneously (the async library with async.parallel is awesome for this):
+		// Get user
+		// Load course
+	// Populate modules using Mongoose .populate()
+	// Compare user's completed module IDs with the course to calculate timeRemaining and progress
+
 	let courseId = parseInt(req.params.id);
 
 	Course.findOne({
@@ -23,7 +29,7 @@ module.exports = (req, res) => {
 		id: courseId,
 
 		// User-specific attributes
-		status: "inprogress",
+		status: "inprogress", // new/inprogress/completed
 		progressPercentage: 87,
 		timeRemaining: 2,
 		totalTime: 10,

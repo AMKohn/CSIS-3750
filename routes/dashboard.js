@@ -3,7 +3,8 @@ module.exports = (req, res) => {
 		console.log("Got dashboard request for user", req.username);
 	}
 
-	// Get user from DB, use mongoose populate to load course info.
+	// Get user from DB, use mongoose .populate() to load course info.
+	// Generate output data. Need to add a timeEstimate to modules to be able to calculate course time
 	// Sort by In Progress -> Not Started -> Completed
 
 	res.json({
