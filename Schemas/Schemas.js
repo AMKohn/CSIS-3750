@@ -8,8 +8,8 @@ var courseSchema = new Schema ({
     description: String,
     contents: [{
         type: {
-            lesson: Boolean,
-            quiz: Boolean
+            type: String,
+            enum: ["lesson", "quiz"]
         },
         id: Number
     }]
@@ -19,9 +19,9 @@ var userSchema = new Schema ({
     name: String,
     id: Number,
     type: {
-        student: Boolean,
-        instructor: Boolean
-        }
+        type: String,
+        enum: ["student", "instructor"]
+    }
 });
 
 var lessonSchema = new Schema ({
@@ -31,9 +31,8 @@ var lessonSchema = new Schema ({
     modules: {
         id: Number,
         type: {
-            module: Boolean,
-            quiz: Boolean,
-            assignment: Boolean
+            type: String,
+            enum: ["module", "quiz", "assignment"]
         }
     },
     nextLessonId: Number,
@@ -67,10 +66,8 @@ var quizSchema = new Schema ({
         points: Number,
         description: String,
         type: {
-            multipleChoice: Boolean,
-            checkbox: Boolean,
-            textAnswer: Boolean,
-            matching: Boolean
+            type: String,
+            enum: ["multipleChoice", "checkBox", "textAnswer"]
         },
         options:{
             required: Boolean,
