@@ -25,8 +25,15 @@ module.exports = (req, res) => {
 	});
 
 	res.json({
-		name: "My Super Awesome Course " + courseId,
+		name: "Intro to Python",
 		id: courseId,
+		goals: [
+			"Define and utilize the standard data types and utility classes including arrays and strings",
+			"Write proper code blocks and correctly scope variables",
+			"Use I/O, functions, exceptions, decision making blocks, control structures and classes to properly write code",
+			"Write programs to solve a variety of object-oriented problems with multiple classes and objects",
+			"Write drivers to test code"
+		],
 
 		// User-specific attributes
 		status: "inprogress", // new/inprogress/completed
@@ -43,7 +50,8 @@ module.exports = (req, res) => {
 		// Lessons
 		lessons: [{
 			id: 1,
-			name: "Lesson 1",
+			name: "Data Types",
+			description: "Learn how to use standard data types and fulfill the first course goal",
 			status: "completed",
 			modules: [
 				{ id: 101, name: "Module 1-1", completed: true, link: `/courses/${courseId}/modules/101` },
@@ -59,7 +67,8 @@ module.exports = (req, res) => {
 			]
 		}, {
 			id: 2,
-			name: "Lesson 2",
+			name: "Structure",
+			description: "Fulfill the second course goal and learn proper programming structure",
 			status: "inprogress",
 			modules: [
 				{ id: 201, name: "Module 2-1", completed: true, link: `/courses/${courseId}/modules/201` },
@@ -75,7 +84,8 @@ module.exports = (req, res) => {
 			]
 		}, {
 			id: 3,
-			name: "Lesson 3",
+			name: "Doing More",
+			description: "Get familiar with structures that make programming more effective and allow you to use files",
 			status: "new",
 			modules: [
 				{ id: 301, name: "Module 3-1", completed: false, link: `/courses/${courseId}/modules/301` },
@@ -91,7 +101,8 @@ module.exports = (req, res) => {
 			]
 		}, {
 			id: 4,
-			name: "Lesson 4",
+			name: "Object-Oriented Programming",
+			description: "Learn the fundamentals of Object-Oriented Programming and the building blocks for large-scale applications",
 			status: "new",
 			modules: [
 				{ id: 401, name: "Module 4-1", completed: false, link: `/courses/${courseId}/modules/401` },
@@ -104,6 +115,23 @@ module.exports = (req, res) => {
 				{ id: 408, name: "Module 4-8", completed: false, link: `/courses/${courseId}/modules/408` },
 				{ id: 409, name: "Module 4-9", completed: false, link: `/courses/${courseId}/modules/409` },
 				{ id: 410, name: "Module 4-10", completed: false, link: `/courses/${courseId}/modules/410` }
+			]
+		}, {
+			id: 5,
+			name: "Testing",
+			description: "Ensure that the code you write works reliably and as expected",
+			status: "new",
+			modules: [
+				{ id: 501, name: "Module 5-1", completed: false, link: `/courses/${courseId}/modules/501` },
+				{ id: 502, name: "Module 5-2", completed: false, link: `/courses/${courseId}/modules/502` },
+				{ id: 503, name: "Module 5-3", completed: false, link: `/courses/${courseId}/modules/503` },
+				{ id: 504, name: "Module 5-4", completed: false, link: `/courses/${courseId}/modules/504` },
+				{ id: 505, name: "Module 5-5", completed: false, link: `/courses/${courseId}/modules/505` },
+				{ id: 506, name: "Module 5-6", completed: false, link: `/courses/${courseId}/modules/506` },
+				{ id: 507, name: "Module 5-7", completed: false, link: `/courses/${courseId}/modules/507` },
+				{ id: 508, name: "Module 5-8", completed: false, link: `/courses/${courseId}/modules/508` },
+				{ id: 509, name: "Module 5-9", completed: false, link: `/courses/${courseId}/modules/509` },
+				{ id: 510, name: "Module 5-10", completed: false, link: `/courses/${courseId}/modules/510` }
 			]
 		}]
 	});
