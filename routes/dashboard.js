@@ -21,7 +21,7 @@ module.exports = (req, res) => {
 			continueLink: "/courses/1/modules/101"
 		}, {
 			id: 2,
-			name: "Fundamentals of Computing II",
+			name: "Network and Data Communication",
 			instructor: "John Doe, PhD",
 			status: "inprogress",
 
