@@ -13,7 +13,7 @@ module.exports = (req, res) => {
 
 	let courseId = parseInt(req.params.id);
 
-	Course.findOne({
+	Course.find({
 		id: courseId
 	}, (err, course) => {
 		if (err || !course) {
