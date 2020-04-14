@@ -15,7 +15,7 @@ main.dashboard {
 .dashboard h1.title {
     flex: 1 0 100%;
     font-size: 30px;
-    font-weight: 300;
+    font-weight: 400;
     margin-bottom: 20px;
 }
 
@@ -40,10 +40,10 @@ main.dashboard {
 }
 
 .dashboard .course h2 {
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 20px;
-    margin-bottom: 5px;
+    font-size: 17px;
+    line-height: 22px;
+    margin: -2px 0 5px;
+    font-family: Roboto Slab, Roboto, sans-serif;
 }
 
 .dashboard .course .subtitle {

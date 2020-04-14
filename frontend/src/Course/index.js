@@ -34,6 +34,10 @@ class LessonListing extends React.Component {
 			<div className={this.getClassName()}>
 				<h3 className={"name"} onClick={() => this.setState({ collapsed: !this.state.collapsed })}>{this.state.name}</h3>
 
+				{this.state.description &&
+					<p className={"desc"}>{this.state.description}</p>
+				}
+
 				<ul className={"module-list"}>
 					{this.state.modules.map(m =>
 						<li className={m.completed ? "completed" : ""} key={m.id}>
@@ -123,6 +127,16 @@ export default class Course extends React.Component {
 						<h2>Continue with {c.nextModule.lessonName}, {c.nextModule.name}</h2>
 
 						<Link to={c.nextModule.link} className={"btn"}>Continue</Link>
+					</div>
+				}
+
+				{ c.hasOwnProperty("goals") && Array.isArray(c.goals) && c.goals.length &&
+					<div className={"goals"}>
+						<h2>Course Goals</h2>
+
+						<ol>
+							{c.goals.map((g, i) => <li key={i}>{g}</li>)}
+						</ol>
 					</div>
 				}
 

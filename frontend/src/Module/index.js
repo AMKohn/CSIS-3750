@@ -69,7 +69,7 @@ export default class Module extends React.Component {
 				<Link to={"/courses/" + cId}>Back to course</Link>
 
 				<div className={"content"}>
-					<h1>{this.state.title}</h1>
+					<h1 className={"title"}>{this.state.title}</h1>
 
 					<div className={"module-content"} dangerouslySetInnerHTML={{ __html: this.state.content }} />
 
