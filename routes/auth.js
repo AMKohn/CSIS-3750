@@ -4,7 +4,7 @@ const User = require("../lib/db/User");
 
 exports.getToken = (req, res) => {
 	User.findOne({
-		username: req.params.username
+		_id: req.params.username
 	}, (err, user) => {
 		if (err || !user) {
 			res.status(404).json({
