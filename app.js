@@ -3,6 +3,7 @@ const logger = require("morgan");
 const express = require("express");
 const Auth = require("./lib/auth");
 
+const quizzes = require("./routes/quizzes");
 const authRoutes = require("./routes/auth");
 const indexRoute = require("./routes/index");
 const dashRoute = require("./routes/dashboard");
@@ -25,6 +26,9 @@ api.get("/getToken/:username", authRoutes.getToken);
 api.use(Auth.extendRequest);
 
 api.get("/dashboard", dashRoute);
+
+api.get("/courses/:courseId/quizzes/:id", quizzes.get);
+api.put("/courses/:courseId/quizzes/:id", quizzes.put);
 
 api.get("/courses/:courseId/modules/:id", modulesRoute);
 api.get("/courses/:id", coursesRoute);

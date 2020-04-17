@@ -1,0 +1,36 @@
+.quiz .questions {
+	padding-top: 25px;
+}
+
+.quiz .question .title {
+	margin: 0;
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.quiz .question .desc {
+	margin: 15px 0 0;
+}
+
+.quiz .question .option-list {
+	padding: 15px 0 25px;
+}
+
+.quiz .question .option-list label {
+	display: block;
+	font-size: 16px;
+	padding: 5px 15px;
+	border-radius: 3px;
+	border: 1px solid transparent;
+}
+
+.quiz .question .select {
+	width: 400px;
+	margin: 25px 0;
+}
+
+.quiz .btn.submit {
+	font-size: 16px;
+	margin-top: 30px;
+	padding: 16px 28px;
+}

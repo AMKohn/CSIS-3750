@@ -94,7 +94,7 @@ module.exports = (req, res) => {
 					{ id: 207, name: "Module 2-7", completed: false, link: `/courses/${courseId}/modules/207` },
 					{ id: 208, name: "Module 2-8", completed: false, link: `/courses/${courseId}/modules/208` },
 					{ id: 209, name: "Module 2-9", completed: false, link: `/courses/${courseId}/modules/209` },
-					{ id: 210, name: "Module 2-10", completed: false, link: `/courses/${courseId}/modules/210` }
+					{ id: 210, name: "Structure quiz", completed: true, link: `/courses/${courseId}/quizzes/210`, score: 87 }
 				]
 			}, {
 				id: 3,

@@ -6,6 +6,7 @@ import {
 	NavLink
 } from "react-router-dom";
 
+import Quiz from "./Quiz";
 import Module from "./Module";
 import Course from "./Course";
 import Dashboard from "./Dashboard";
@@ -26,6 +27,7 @@ export default function App() {
 			</div>
 
 			<Switch>
+				<Route path="/courses/:courseId/quizzes/:quizId" component={Quiz} />
 				<Route path="/courses/:courseId/modules/:moduleId" component={Module} />
 				<Route path="/courses/:courseId" component={Course} />
 				<Route path="/" component={Dashboard} />

@@ -41,7 +41,7 @@ class LessonListing extends React.Component {
 				<ul className={"module-list"}>
 					{this.state.modules.map(m =>
 						<li className={m.completed ? "completed" : ""} key={m.id}>
-							<Link to={m.link}>{m.name}</Link>
+							<Link to={m.link}>{m.name}{m.score ? <span className={"score"}>{m.score}%</span> : ""}</Link>
 						</li>
 					)}
 				</ul>
