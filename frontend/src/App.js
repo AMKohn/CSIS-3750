@@ -21,9 +21,11 @@ export default function App() {
 			</header>
 
 			<div className="sidenav">
-				<NavLink to="/" exact>Home</NavLink>
-				<NavLink to="/courses/0" exact>Courses</NavLink>
-				<NavLink to="/courses/0/modules/205" isActive={(match, location) => location.pathname.split("/")[3] === "modules"}>Module</NavLink>
+				<NavLink to="/" exact>Dashboard</NavLink>
+				{/* eslint-disable-next-line */}
+				<a href={"#"}>Profile</a>
+				{/* eslint-disable-next-line */}
+				<a href={"#"}>Settings</a>
 			</div>
 
 			<Switch>
