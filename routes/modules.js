@@ -32,7 +32,9 @@ module.exports = (req, res) => {
 		let ret = {
 			courseId: cId,
 			title: module.title,
-			content: module.content
+			content: module.quiz ?
+				`<p><button type="button" onclick="navLinkClick('/courses/${req.params.courseId}/quizzes/${mId}')" class="btn blue" style="font-size: 16px;margin: 16px auto;padding: 16px 28px;">Take the quiz</button></p>` :
+				module.content
 		};
 
 		let moduleList = _.flatMap(progress.course.lessons, l => l.modules);
@@ -53,7 +55,7 @@ module.exports = (req, res) => {
 
 		// Update the course status asynchronously if needed
 		// Naively assumes all modules in the completedModules are valid IDs in the moduleList
-		if (progress.status === "new" || (progress.status === "inprogress" && progress.completedModules.length === moduleList.length)) {
+		if (!module.quiz && (progress.status === "new" || (progress.status === "inprogress" && progress.completedModules.length === moduleList.length))) {
 			progress.status = progress.completedModules.length === moduleList.length ? "completed" : "inprogress";
 			progress.save(err => console.log("Error updating progress status:", err));
 		}

@@ -14,17 +14,38 @@ class Question extends React.Component {
 		super(props);
 
 		this.state = {
-			selectedValue: ""
+			selectedValue: this.props.type === "checkbox" ? [] : ""
 		};
 	}
 
 	setSelected(val) {
-		// TODO: handle multiselect serialization
-		this.setState({
-			selectedValue: val
-		});
+		if (this.props.type === "checkbox") {
+			if (this.state.selectedValue.indexOf(val) !== -1) {
+				let currVal = this.state.selectedValue.slice(0);
 
-		this.props.onChange(val);
+				currVal.splice(this.state.selectedValue.indexOf(val), 1);
+
+				this.setState({
+					selectedValue: currVal
+				});
+
+				this.props.onChange(currVal);
+			}
+			else {
+				this.setState({
+					selectedValue: this.state.selectedValue.concat(val)
+				});
+
+				this.props.onChange(this.state.selectedValue.concat(val));
+			}
+		}
+		else {
+			this.setState({
+				selectedValue: val
+			});
+
+			this.props.onChange(val);
+		}
 	}
 
 	getControl() {
@@ -34,7 +55,7 @@ class Question extends React.Component {
 					{this.props.options.map(o =>
 						<label className={this.state.checked === o.value ? "selected" : ""} key={o.value}>
 							{this.props.type === "checkbox" ? (
-								<Checkbox value={o.value} name={this.props.id} />
+								<Checkbox value={o.value} name={this.props.id} onChange={() => this.setSelected(o.value)} checked={this.state.selectedValue.indexOf(o.value) !== -1} />
 							) : (
 								<Radio value={o.value} name={this.props.id} onChange={() => this.setSelected(o.value)} checked={this.state.selectedValue === o.value} />
 							)}
@@ -114,24 +135,35 @@ export default class Quiz extends React.Component {
 		}
 	}
 
-	handleChange(id, value) {
+	handleChange(index, value) {
 		// There's no need to trigger a state change since we don't use this
-		this.state.questions.forEach(e => {
-			if (e.id === id) {
-				e.value = value;
-			}
-		});
+		this.state.questions[index].value = value;
 	}
 
 	submitQuiz() {
-		let data = {};
+		let data = [];
 
-		this.state.questions.forEach(e => data[e.id] = e.value);
+		for (let i = 0; i < this.state.questions.length; i++) {
+			if (this.state.questions[i].hasOwnProperty("value")) {
+				data.push(this.state.questions[i].value);
+			}
+			else {
+				alert("Error: all questions are required");
+				return;
+			}
+		}
 
-		// TODO: PUT to the server endpoint and go back to course page
-		console.log(data);
-
-		this.props.history.push("/courses/" + this.state.courseId);
+		this.context.fetch("/api/courses/" + this.props.match.params.courseId + "/quizzes/" + this.props.match.params.quizId, {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify(data)
+			})
+			.then(
+				() => this.props.history.push("/courses/" + this.state.courseId),
+				error => alert("Something went wrong while trying to submit the quiz. Please try again")
+			);
 	}
 
 	render() {
@@ -161,7 +193,7 @@ export default class Quiz extends React.Component {
 					<h1 className={"title"}>{this.state.title}</h1>
 
 					<div className={"questions"}>
-						{this.state.questions.map(e => <Question key={e.id} onChange={value => this.handleChange(e.id, value)} {...e} />)}
+						{this.state.questions.map((e, i) => <Question key={i} onChange={value => this.handleChange(i, value)} id={"question" + i} {...e} />)}
 					</div>
 
 					<button className="btn blue submit" onClick={() => this.submitQuiz()}>Submit Quiz</button>

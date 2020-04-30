@@ -17,6 +17,8 @@ export default class Module extends React.Component {
 			loaded: false,
 			error: false
 		};
+
+		window.navLinkClick = url => this.props.history.push(url);
 	}
 
 	updateFromApi() {

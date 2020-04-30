@@ -17,7 +17,7 @@ module.exports = (req, res) => {
 			.exec(cb),
 		course: cb => Course
 			.findOne({ _id: courseId })
-			.populate("lessons.modules", "_id title")
+			.populate("lessons.modules", "_id title quiz")
 			.lean() // For JSON stringifying. Removes utility methods, so only use if you want to do that
 			.exec(cb)
 	}, (err, {progress, course}) => {
@@ -63,10 +63,10 @@ module.exports = (req, res) => {
 					id: m._id,
 					name: m.title,
 					completed: quizResults.hasOwnProperty(m._id) || progress.completedModules.indexOf(m._id) !== -1,
-					link: `/courses/${course._id}/modules/${m._id}`
+					link: `/courses/${course._id}/${m.quiz ? "quizzes" : "modules"}/${m._id}`
 				};
 
-				if (quizResults.hasOwnProperty(m._id)) {
+				if (m.quiz && quizResults.hasOwnProperty(m._id)) {
 					mData.score = quizResults[m._id].score;
 				}
 
@@ -80,7 +80,7 @@ module.exports = (req, res) => {
 						id: m._id,
 						name: m.title,
 						lessonName: l.title,
-						link: `/courses/${course._id}/modules/${m._id}`
+						link: `/courses/${course._id}/${m.quiz ? "quizzes" : "modules"}/${m._id}`
 					};
 				}
 
