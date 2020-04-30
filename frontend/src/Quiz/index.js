@@ -192,6 +192,8 @@ export default class Quiz extends React.Component {
 				<div className={"content"}>
 					<h1 className={"title"}>{this.state.title}</h1>
 
+					{this.state.content ? <div className={"module-content"} dangerouslySetInnerHTML={{ __html: this.state.content }} /> : ""}
+
 					<div className={"questions"}>
 						{this.state.questions.map((e, i) => <Question key={i} onChange={value => this.handleChange(i, value)} id={"question" + i} {...e} />)}
 					</div>
