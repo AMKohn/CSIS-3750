@@ -141,7 +141,7 @@ export default class Course extends React.Component {
 				}
 
 				<div className={"contents"}>
-					{c.lessons.map(l => <LessonListing lesson={l} key={l.id} courseId={this.state.id} />)}
+					{c.lessons.map((l, i) => <LessonListing lesson={l} key={i} courseId={this.state.id} />)}
 				</div>
 
 				<div className={"sidebar"}>

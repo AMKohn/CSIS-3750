@@ -48,8 +48,8 @@ module.exports = (req, res) => {
 					}
 				}));
 
-				ret.timeRemaining = totalTime - completedTime;
-				ret.totalTime = totalTime;
+				ret.timeRemaining = Math.round((totalTime - completedTime) / 60);
+				ret.totalTime = Math.round(totalTime / 60);
 				ret.progressPercentage = Math.round((completedModules / totalModules) * 100);
 				ret.moduleCount = totalModules;
 
