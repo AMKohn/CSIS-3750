@@ -36,7 +36,9 @@ module.exports = (req, res) => {
 			title: module.title,
 			content: module.quiz ?
 				`<p><button type="button" onclick="navLinkClick('/courses/${req.params.courseId}/quizzes/${mId}')" class="btn blue" style="font-size: 16px;margin: 16px auto;padding: 16px 28px;">Take the quiz</button></p>` :
-				module.content
+				module.content,
+			nextModule: null,
+			prevModule: null
 		};
 
 		let moduleList = _.flatMap(progress.course.lessons, l => l.modules);

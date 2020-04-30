@@ -18,6 +18,7 @@ main.module {
 }
 
 .module .nav-buttons {
+    height: 40px;
     line-height: 40px;
     margin: 20px -35px -35px;
 }
