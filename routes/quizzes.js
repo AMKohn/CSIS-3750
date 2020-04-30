@@ -55,15 +55,21 @@ exports.put = (req, res) => {
 
 		let score = Math.round((points / totalPoints) * 100);
 
-		Progress.where({ user: req.username, course: cId }).update({
+		Progress.findOneAndUpdate({
+			user: req.username,
+			course: cId
+		}, {
 			$addToSet: {
 				quizPerformance: {
 					id: mId,
 					score: score,
 					time: new Date()
-				}
+				},
+				completedModules: mId
 			}
-		}).exec(err => {
+		}, {
+			new: true
+		}).populate("course").exec((err, progress) => {
 			if (err) {
 				return res.status(500).json({ error: { message: "Failed to save quiz" } });
 			}
@@ -71,6 +77,16 @@ exports.put = (req, res) => {
 			res.json({
 				score: score
 			});
+
+			// Calculate course completion and update
+			let moduleList = _.flatMap(progress.course.lessons, l => l.modules);
+
+			if (progress.status === "new" || (progress.status === "inprogress" && progress.completedModules.length === moduleList.length)) {
+				progress.status = progress.completedModules.length === moduleList.length ? "completed" : "inprogress";
+				progress.save(err => {
+					if (err) console.log("Error updating progress status:", err);
+				});
+			}
 		});
 	});
 };

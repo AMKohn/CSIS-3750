@@ -20,6 +20,8 @@ module.exports = (req, res) => {
 				$addToSet: {
 					completedModules: mId
 				}
+			}, {
+				new: true
 			})
 			.populate("course")
 			.exec(cb),
@@ -57,7 +59,9 @@ module.exports = (req, res) => {
 		// Naively assumes all modules in the completedModules are valid IDs in the moduleList
 		if (!module.quiz && (progress.status === "new" || (progress.status === "inprogress" && progress.completedModules.length === moduleList.length))) {
 			progress.status = progress.completedModules.length === moduleList.length ? "completed" : "inprogress";
-			progress.save(err => console.log("Error updating progress status:", err));
+			progress.save(err => {
+				if (err) console.log("Error updating progress status:", err);
+			});
 		}
 	});
 };
