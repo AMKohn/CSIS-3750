@@ -11,6 +11,10 @@ module.exports = (req, res) => {
 	let mId = parseInt(req.params.id);
 	let cId = parseInt(req.params.courseId);
 
+	if (req.userCourses.indexOf(cId) === -1) {
+		return res.status(400).json({ error: { message: "You must be enrolled in the course to view this module" } });
+	}
+
 	async.parallel({
 		progress: cb => Progress
 			.findOneAndUpdate({
@@ -28,7 +32,7 @@ module.exports = (req, res) => {
 		module: cb => Module.findOne({ _id: mId }).lean().exec(cb)
 	}, (err, { module, progress }) => {
 		if (err || !module || !progress) {
-			return res.status(500).json({ error: { message: "Failed to load module" } });
+			return res.status(500).json({ error: { message: "Failed to load module. Make sure you're enrolled in the course and have access" } });
 		}
 
 		let ret = {

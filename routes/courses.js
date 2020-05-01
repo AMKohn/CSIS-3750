@@ -10,6 +10,10 @@ module.exports = (req, res) => {
 
 	let courseId = parseInt(req.params.id);
 
+	if (req.userCourses.indexOf(courseId) === -1) {
+		return res.status(400).json({ error: { message: "You must be enrolled in this course to view it" } });
+	}
+
 	async.parallel({
 		progress: cb => Progress // Populating course here would mean the DB needs to run an extra roundtrip step
 			.findOne({ user: req.username, course: courseId })

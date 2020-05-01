@@ -70,8 +70,8 @@ exports.put = (req, res) => {
 		}, {
 			new: true
 		}).populate("course").exec((err, progress) => {
-			if (err) {
-				return res.status(500).json({ error: { message: "Failed to save quiz" } });
+			if (err || !progress) {
+				return res.status(500).json({ error: { message: "Failed to save quiz. Make sure you're enrolled in the course and have access" } });
 			}
 
 			res.json({
@@ -94,6 +94,10 @@ exports.put = (req, res) => {
 exports.get = (req, res) => {
 	if (!req.isAuthed) {
 		return res.status(401).json({ error: { message: "You must be signed in to view quizzes" } });
+	}
+
+	if (req.userCourses.indexOf(parseInt(req.params.courseId)) === -1) {
+		return res.status(400).json({ error: { message: "You must be enrolled in the course to view this quiz" } });
 	}
 
 	let mId = parseInt(req.params.id);
